@@ -1,29 +1,28 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../models/user");
 
 
-// get a list of ninjas from the db
-router.get("/ninjas", function(req, res) {
+// get a list of users from the db
+router.get("/users", function(req, res) {
     res.send({ type: "GET" });
 });
 
-// add a new ninja to the db
-router.post("/ninjas", function(req, res) {
-    console.log(req.body);
-    res.send({
-        type: "POST",
-        name: req.body.name,
-        belt: req.body.belt
+// add a new user to the db
+router.post("/users", function(req, res) {
+    User.create(req.body).then(function(user) {
+            console.log(user);
+            res.send({user});
     });
 });
 
-// update a ninja in the db
-router.put("/ninjas/:id", function(req, res) {
+// update a user in the db
+router.put("/users/:id", function(req, res) {
     res.send({ type: "PUT" });
 });
 
-// delete a ninja in the db
-router.delete("/ninjas/:id", function(req, res) {
+// delete a user in the db
+router.delete("/users/:id", function(req, res) {
     res.send({ type: "DELETE" });
 });
 
