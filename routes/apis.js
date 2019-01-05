@@ -5,7 +5,20 @@ const User = require("../models/user");
 
 // get a list of users from the db
 router.get("/users", function(req, res, next) {
-    res.send({ type: "GET" });
+    User.find({}).then(function(users){
+        res.send(users);
+    });
+    // User.aggregate([{$geoNear: {
+    //   near: {
+    //       type: "Point",
+    //       coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)],
+    //       spherical: true,
+    //       maxDistance: 100000,
+    //       distanceField: "dist.calculated"
+    //   }
+    // }}]).then(function(users){
+    //     res.send(users);
+    // });
 });
 
 // add a new user to the db

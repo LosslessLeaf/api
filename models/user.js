@@ -11,7 +11,7 @@ const GeoSchema = new Schema({
     coordinates: {
         type: [Number],
         index: "2dsphere"
-    }
+    },
 });
 
 // create user Schema & model
